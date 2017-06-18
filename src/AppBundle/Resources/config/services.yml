@@ -1,0 +1,4 @@
+
+services:
+  learning.basic_inspection.service:
+    class: AppBundle\Patterns\Decorator\BasicInspection
