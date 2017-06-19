@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\LateStaticBinding\OtherUser;
 use AppBundle\LateStaticBinding\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,8 +31,10 @@ class DefaultController extends Controller
     public function lateStaticBindingAction()
     {
         $user = User::create();
+        $otherUser = OtherUser::create();
 
         dump($user);
+        dump($otherUser);
         die;
     }
 
