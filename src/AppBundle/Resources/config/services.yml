@@ -13,9 +13,12 @@ services:
     class: AppBundle\Patterns\Adapter\Kindle
 
   learning.adapter.nook:
-      class: AppBundle\Patterns\Adapter\Nook
+    class: AppBundle\Patterns\Adapter\Nook
 
   learning.adapter.kindle_adapter:
     class: AppBundle\Patterns\Adapter\eReaderAdapter
     arguments:
       - "@learning.adapter.kindle"
+
+  learning.utility.service:
+    class: AppBundle\Traits\UtilityService

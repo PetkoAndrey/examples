@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\LateStaticBinding\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -20,5 +21,34 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
+    }
+
+
+    /**
+     * @Route("/late-static-binding", name="late-static-binding")
+     */
+    public function lateStaticBindingAction()
+    {
+        $user = User::create();
+
+        dump($user);
+        die;
+    }
+
+    /**
+     * @Route("/trait", name="trait")
+     */
+    public function traitAction()
+    {
+        $utilityService = $this->get('learning.utility.service');
+        $price = 20;
+
+        $tax = $utilityService->getFinalPrice($price);
+        $calculate = $utilityService->calculate($price);
+
+
+        dump($calculate);
+        dump($tax);
+        die;
     }
 }

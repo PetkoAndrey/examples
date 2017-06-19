@@ -44,10 +44,9 @@ class PatternController extends Controller
         $person->read($book);
 
         /**
-         * same as $person->read(new eReaderAdapter(new Kindle()));
+         * Same as $person->read(new eReaderAdapter(new Kindle()));
          */
         $person->read($kindleAdapter);
-
 
         die;
     }
