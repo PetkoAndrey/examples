@@ -2,3 +2,20 @@
 services:
   learning.basic_inspection.service:
     class: AppBundle\Patterns\Decorator\BasicInspection
+
+  learning.adapter.book:
+    class: AppBundle\Patterns\Adapter\Book
+
+  learning.adapter.person:
+    class: AppBundle\Patterns\Adapter\Person
+
+  learning.adapter.kindle:
+    class: AppBundle\Patterns\Adapter\Kindle
+
+  learning.adapter.nook:
+      class: AppBundle\Patterns\Adapter\Nook
+
+  learning.adapter.kindle_adapter:
+    class: AppBundle\Patterns\Adapter\eReaderAdapter
+    arguments:
+      - "@learning.adapter.kindle"
