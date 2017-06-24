@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Closures\ClosureProduct;
+use AppBundle\Closures\Totalizer;
 use AppBundle\LateStaticBinding\OtherUser;
 use AppBundle\LateStaticBinding\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -52,6 +54,34 @@ class DefaultController extends Controller
 
         dump($calculate);
         dump($tax);
+        die;
+    }
+
+
+    /**
+     * @Route("/delegation", name="delegation")
+     */
+    public function delegationAction()
+    {
+        $person = $this->get('learning.delegation.person');
+
+        $person->writeName();
+        $person->writeAge();
+        die;
+    }
+
+    /**
+     * @Route("/closures", name="closures")
+     */
+    public function closuresAction()
+    {
+        $processSale = $this->get('learning.closures.process_sale');
+
+        $processSale->registerCallback(Totalizer::warnAmount(8));
+
+        $processSale->sale(new ClosureProduct("Туфли", 6));
+        $processSale->sale(new ClosureProduct("Кофе", 6));
+
         die;
     }
 }

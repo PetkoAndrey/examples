@@ -50,4 +50,47 @@ class PatternController extends Controller
 
         die;
     }
+    
+    /**
+     * @Route("/template", name="template")
+     */
+    public function templateAction()
+    {
+        $turkeySub = $this->get('learning.template.turkey_sub');
+
+        $turkeySub->make();
+        die;
+    }
+
+    /**
+     * @Route("/strategy/{slug}", name="strategy")
+     *
+     * @param $slug string
+     */
+    public function strategyAction(string $slug)
+    {
+        $loggerService = $this->get('learning.strategy.logger_service');
+
+        $loggerService->log('new log info', $slug);
+        die;
+    }
+
+    /**
+     * @Route("/chain-of-responsibility", name="chain_of_responsibility")
+     */
+    public function chainOfResponsibilityAction()
+    {
+        $homeStatus = $this->get('learning.chain.home_status');
+
+        $light = $this->get('learning.chain.lights');
+        $locks = $this->get('learning.chain.locks');
+        $alarm = $this->get('learning.chain.alarm');
+
+        $light->setSuccessor($locks);
+        $locks->setSuccessor($alarm);
+
+        $light->check($homeStatus);
+
+        die;
+    }
 }

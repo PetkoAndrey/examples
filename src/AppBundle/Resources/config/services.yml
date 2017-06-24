@@ -22,3 +22,42 @@ services:
 
   learning.utility.service:
     class: AppBundle\Traits\UtilityService
+
+  learning.delegation.person_writer:
+    class: AppBundle\DelegationWithCall\PersonWriter
+
+  learning.delegation.person:
+    class: AppBundle\DelegationWithCall\Person
+    arguments:
+      - "@learning.delegation.person_writer"
+
+  learning.closures.process_sale:
+    class: AppBundle\Closures\ProcessSale
+
+  learning.template.turkey_sub:
+    class: AppBundle\Patterns\Template\TurkeySub
+
+  learning.strategy.logger_service:
+    class: AppBundle\Patterns\Strategy\LoggerService
+
+  learning.strategy.log_to_database:
+    class: AppBundle\Patterns\Strategy\LogToDatabase
+    tags:
+      - { name: learning.logger, alias: database }
+
+  learning.strategy.log_to_file:
+    class: AppBundle\Patterns\Strategy\LogToFile
+    tags:
+      - { name: learning.logger, alias: file }
+
+  learning.chain.home_status:
+    class: AppBundle\Patterns\ChainOfResponsibility\HomeStatus
+
+  learning.chain.alarm:
+    class: AppBundle\Patterns\ChainOfResponsibility\Alarm
+
+  learning.chain.lights:
+      class: AppBundle\Patterns\ChainOfResponsibility\Lights
+
+  learning.chain.locks:
+      class: AppBundle\Patterns\ChainOfResponsibility\Locks
