@@ -22,7 +22,7 @@ class DefaultController extends Controller
     {
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
 
@@ -50,7 +50,6 @@ class DefaultController extends Controller
 
         $tax = $utilityService->getFinalPrice($price);
         $calculate = $utilityService->calculate($price);
-
 
         dump($calculate);
         dump($tax);
@@ -81,6 +80,25 @@ class DefaultController extends Controller
 
         $processSale->sale(new ClosureProduct("Туфли", 6));
         $processSale->sale(new ClosureProduct("Кофе", 6));
+
+        die;
+    }
+
+    /**
+     * @Route("/access-to-private-with-call", name="access-to-private-with-call")
+     */
+    public function accessToPrivateWithCallAction()
+    {
+        $obj = new class
+        {
+            private $foo = 'bar';
+        };
+
+        $fn = function () {
+            var_dump($this->foo);
+        };
+
+        $fn->call($obj);
 
         die;
     }
