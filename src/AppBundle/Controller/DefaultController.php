@@ -102,4 +102,38 @@ class DefaultController extends Controller
 
         die;
     }
+
+
+    /**
+     * @Route("/more-closures", name="more_closures")
+     */
+    public function moreClosuresAction()
+    {
+        $closureService = $this->get('learning.closures.service');
+        $closure = $closureService->getClosure();
+
+//        $closure->__invoke(1,3);
+        $closure->call($this, 1, 3);
+        die;
+
+    }
+
+
+    /**
+     * @Route("/factorial/{number}", name="factorial")
+     *
+     * @param int $number
+     */
+    public function factorialAction($number)
+    {
+        $closureService = $this->get('learning.closures.service');
+        $factorial = $closureService->getFactorial();
+
+        $result = $factorial->__invoke($number);
+
+        dump($result);
+        die;
+    }
+
+
 }
