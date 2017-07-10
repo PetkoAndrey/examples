@@ -26,6 +26,16 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/layout", name="layout")
+     */
+    public function layoutAction()
+    {
+        return $this->render('AppBundle:Layout:index.html.twig', [
+
+        ]);
+    }
+
 
     /**
      * @Route("/late-static-binding", name="late-static-binding")
@@ -135,5 +145,44 @@ class DefaultController extends Controller
         die;
     }
 
+    /**
+     * @Route("/range-generator", name="range_generator")
+     */
+    public function rangeGeneratorAction()
+    {
+        $rangeGenerator = $this->get('learning.generator.range');
 
+//      generator entity:  dump($rangeGenerator->xrange(1, 9, 2));
+
+        foreach ($rangeGenerator->xrange(1, 9, 2) as $number) {
+            echo "$number ";
+        }
+
+        die;
+    }
+
+    /**
+     * @Route("/array-worker", name="array_worker")
+     */
+    public function arrayWorkerAction()
+    {
+        $array = [
+            2,
+            2.11231,
+            [321.123123, 'string'],
+            'value'
+        ];
+
+        $arrayWorker = $this->get('learning.array_work.helper');
+
+        $arrayWorker->addHandler('round');
+        $arrayWorker->addCustomHandler(function ($item) {
+           return $item * 2;
+        });
+
+        $array = $arrayWorker->handle($array);
+
+        dump($array);
+        die;
+    }
 }

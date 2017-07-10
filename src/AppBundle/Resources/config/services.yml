@@ -35,7 +35,7 @@ services:
     class: AppBundle\Closures\ProcessSale
 
   learning.closures.service:
-      class: AppBundle\Closures\ClosureService
+    class: AppBundle\Closures\ClosureService
 
   learning.template.turkey_sub:
     class: AppBundle\Patterns\Template\TurkeySub
@@ -60,7 +60,20 @@ services:
     class: AppBundle\Patterns\ChainOfResponsibility\Alarm
 
   learning.chain.lights:
-      class: AppBundle\Patterns\ChainOfResponsibility\Lights
+    class: AppBundle\Patterns\ChainOfResponsibility\Lights
 
   learning.chain.locks:
-      class: AppBundle\Patterns\ChainOfResponsibility\Locks
+    class: AppBundle\Patterns\ChainOfResponsibility\Locks
+
+  learning.generator.range:
+    class: AppBundle\Generator\RangeGenerator
+
+  learning.spl.spl_examples:
+    class: AppBundle\SPL\SplExamples
+
+  learning.array_work.helper:
+    class: AppBundle\Services\ArrayWorkHelper
+
+  # FACTORIES
+  learning.factory.customer:
+    class: AppBundle\Factory\CustomerFactory
