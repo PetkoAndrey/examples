@@ -83,7 +83,6 @@ class ArrayWorkHelper
         return $array;
     }
 
-
     /**
      * @param string $slug
      * @throws NoHandlerException
@@ -96,7 +95,6 @@ class ArrayWorkHelper
 
         $this->currentHandlers[] = $this->hanlders[$slug];
     }
-
 
     /**
      * @param \Closure $closure
